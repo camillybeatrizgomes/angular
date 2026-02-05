@@ -1,0 +1,37 @@
+<form [formGroup]="pessoa">
+    <input type="text" formControlName="nome">
+    <input type="number" formControlName="idade">
+</form>
+
+<p>{{pessoa.value.nome}}</p>
+<p>{{pessoa.value.idade}}</p>
+
+<hr>
+
+<!-- Validando o nome -->
+
+@if (pessoa.get('nome')?.errors?.['required']) {
+    <p>O campo nome deve ser preenchido.</p>
+}
+
+@if (pessoa.get('nome')?.errors?.['minlength']) {
+    <p>O campo nome deve ter pelo menos três caracteres.</p>
+} 
+
+@if (pessoa.get('nome')?.valid) {
+    <p>Nome válido!</p>
+}
+
+<!-- Validando a idade -->
+
+@if (pessoa.get('idade')?.errors?.['required']) {
+    <p>O campo idade deve ser preenchido.</p>
+}
+
+@if (pessoa.get('idade')?.errors?.['max']) {
+    <p>O campo idade deve ter valor máximo de 120.</p>
+}
+
+@if (pessoa.get('idade')?.valid) {
+    <p>Idade válida!</p>
+}
